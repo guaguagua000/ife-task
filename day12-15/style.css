@@ -1,0 +1,565 @@
+html,body {
+	height: 100%;
+	margin: 0 auto;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-size: 12px;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0;
+	padding: 0;
+}
+
+.body-wrapper {
+	display: flex;
+	height: 100%;
+	flex-flow: row wrap;
+	overflow: hidden;
+}
+
+.side-bar {
+	flex: 0 0 100px;
+	display: flex;
+	height: 100%;
+	flex-flow: column;
+	overflow: hidden;
+	background-color: #1d2531;
+}
+
+.icon-wrapper {
+	overflow: auto;
+	height: 100%;
+}
+
+.icon-wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+.icon-box {
+	display: flex;
+	flex-flow: column;
+	margin-top: 20px;
+	list-style-type: square;
+	text-align: center;
+	color: #1d2531;
+}
+
+.icon-box .active {
+	color: #2ca0f7;
+}
+
+.icon-items {
+	width: 60px;
+	flex: 60px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	background-color: #2ca0f7;
+	border-radius: 60px;
+}
+
+.plus-items {
+	border: 5px solid #2d3848;
+	background-color: #1d2531;
+}
+
+.icon-items a {
+	display: block;
+}
+
+.icon-items ion-icon {	
+	padding-top: 15px;
+	font-size: 30px;
+	color: #fff;
+}
+
+.icon-items ion-icon[name="add"] {
+	padding-top: 10px;
+	color: #2d3848;
+}
+
+.setting {
+	bottom: 0;
+	flex: 0 0 50px;
+	width: 100px;
+	background-color: #1d2531;
+}
+
+.setting-box {
+	clear: both;
+}
+
+.setting-items {
+	float: left;
+	margin: 10px;
+	list-style-type: none;
+}
+
+.setting-items ion-icon {
+	font-size: 25px;
+	color: #475364;
+}
+
+.nav {
+	flex: 0 0 225px;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	overflow: auto;
+	background-color: #222c3c;
+
+}
+
+.sett-wrapper {
+	box-sizing: border-box;
+	overflow: auto;
+	height: 100%;
+	margin: 20px 0 50px 35px;
+}
+
+.sett-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.capicity {
+	position: absolute;
+	box-sizing: border-box;
+	display: flex;
+	height:  50px;
+	flex: 50px;
+	bottom: 0;
+	margin-left: 35px;
+	flex-flow: column;
+	background-color: #222c3c;
+	color: #fff;
+}
+
+.capicity .container {
+	width: 170px;
+	background-color: #475364;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.container .prog {
+	width: 30%;
+	height: 2px;
+	background-color: #805ce6;
+}
+
+.nav-box  {
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+}
+
+.nav-items {
+	height: : 250px;
+	line-height: 35px;
+	list-style-type: none;
+	color: #404b5d;
+}
+
+.nav-title {
+	overflow: hidden;
+}
+
+.nav-content {
+	clear: both;
+}
+
+.nav-title p {
+	float: left;
+}
+
+.nav-title ion-icon {
+	float: right;
+	margin: 10px 20px 0 0;
+	font-size: 18px;
+}
+
+.detail-items {
+	list-style-type: none;
+	font-size: 14px;
+	color: #99a2b0;
+}
+
+.detail-items ion-icon {
+	font-size: 20px;
+	padding-right: 10px;
+}
+
+.capicity span{
+	line-height: 25px;
+}
+
+.message {
+	flex: 1 1 200px;
+	height: 100%;
+}
+
+.message-title {
+	width: 100%;
+	height: 79px;
+	overflow: hidden;
+	clear: both;
+	border-bottom: 1px solid #e6e9ec;
+}
+
+.title-left {
+	float: left;
+	line-height: 80px;
+	margin-left: 30px;
+}
+
+.title-right {
+	float: right;
+	display: flex;
+	flex-flow: row;
+	width: 250px;
+	overflow: hidden;
+}
+
+.title-right .avator,
+.title-right .icon-content,
+.title-right ion-icon {
+	float: left;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.avator {
+	position: relative;
+}
+
+.avator ion-icon {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	border-radius: 20px;
+	font-size: 16px;
+	color: #38a76a;
+	background-color: #fff;
+}
+
+.name {
+	color: #5eb4f5;
+	font-size: 16px;
+	padding-bottom: 5px;
+}
+
+.intro {
+	color: #858890;
+	font-size: 14px;
+}
+
+.title-right ion-icon {
+	font-size: 20px;
+	line-height: 80px;
+}
+
+.message-content {
+	display: flex;
+	flex-flow: row;
+	height: 100%;
+}
+
+.chat-menu {
+	display: flex;
+	width: 400px;
+	height: 100%;
+	flex-flow: column;
+}
+
+.chat-menu .search {
+	position: relative;
+	flex: 0 0 70px;
+	border: 1px solid #e6e9ec;
+	border-left: none;
+	border-top: none;
+}
+
+.search input {
+	box-sizing: border-box;
+	width: 338px;
+	height: 30px;
+	margin: 20px 30px 0;
+	padding: 0 35px 0 10px;
+	border: 1px solid #e6e9ec;
+	border-radius: 20px;
+	outline: none;
+}
+
+.search ion-icon {
+	position: absolute;
+	right: 40px;
+	top: 25px;
+	font-size: 20px;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+	color: #000;
+}
+
+.chat-menu .main {
+	width: 400px;
+	height: 100%;
+	border-right: 1px solid #e6e9ec;
+	overflow: auto;
+	margin-bottom: 80px;
+}
+
+.chat-menu .main::-webkit-scrollbar {
+	display: none;
+}
+
+.main-box {
+	width: 400px;
+	height: 100%; 
+}
+
+.main-content {
+	box-sizing: border-box;
+	height: 130px;
+	display: flex;
+	flex-flow: column;
+	flex: 130px;
+	padding: 10px 20px 10px 30px;
+	border-bottom: 1px solid #e6e9ec;
+}
+
+.tt-wrap {
+	margin: 10px 0;
+}
+
+.tt-wrap .icon,
+.tt-wrap .discribe {
+	float: left;
+	margin-right: 20px;
+}
+
+.discribe .name {
+	padding-top: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #585d68;
+}
+
+.discribe .identity {
+	color: #b5b5b5;
+	font-size: 14px;
+}
+
+.tt-wrap .time {
+	float: right;
+	padding-top: 5px;
+	font-size: 14px;
+	color: #7f8fa4;
+}
+
+.tt-wrap .active {
+	color: #2399f1;
+}
+
+.tt-wrap .active::before {
+	content: "";
+	display: inline-block;
+	border: 5px solid #2399f1;
+	border-radius: 5px;
+	margin-right: 5px;
+}
+
+.ct-wrap {
+	overflow: hidden;
+	display: flex;
+	flex-flow: row;
+	font-size: 14px;
+	color: #858890;
+	line-height: 20px;
+	text-overflow:ellipsis;
+}
+
+.chat-content {
+	width: 100%;
+	overflow: auto;
+}
+
+.chat-content::-webkit-scrollbar {
+	display: none;
+}
+
+.chat-title {
+	height: 70px;
+	overflow: hidden;
+	border-bottom: 1px solid #e6e9ec;
+}
+
+.chat-title h2 {
+	float: left;
+	line-height: 70px;
+	margin-left: 15px;
+}
+
+.chat-title h2::after {
+	content: "";
+	display: inline-block;
+	margin-left: 10px;
+	border: 5px solid #29bd41;
+	border-radius: 5px;
+
+}
+
+.list1, .list2 {
+	margin: 20px 20px 0 0 ;
+	float: right;
+}
+
+.list1 a, .list2 a {
+	float: left;
+	display: block;
+	margin: 5px;
+	width: 30px;
+	height: 28px;
+	border: 1px solid #ced0da;
+	border-radius: 5px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 15px;
+	color: #9fa9ba;
+}
+
+.chat-title span {
+	float: right;
+	color: #858890;
+	margin-right: 5px;
+	line-height: 72px;
+	font-size: 14px;
+}
+
+.msg-wrapper {
+	display: flex;
+	flex-flow: column;
+	width: 100%;
+}
+
+.msg-history {
+	flex: 1 1 auto;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.msg-box {
+	display: flex;
+	height: 100%;
+	flex-flow: column;
+	overflow: auto;
+}
+
+.msg-box::-webkit-scrollbar {
+	display: none;
+}
+
+.msg-items {
+	clear: both;
+	list-style-type: none;
+	padding: 10px 30px;
+}
+
+.divider {
+	clear: both;
+	list-style-type: none;
+	color: #7f8fa4;
+	text-align: center;
+}
+
+.divider span {
+	position: relative;
+	display: inline-block;
+	padding: 0 20px;
+	height: 20px;
+	font-size: 16px;
+	background-color: #fff;
+}
+
+.divider::before {
+	display: block;
+	content:"";
+	width: 100%;
+	height: 1px;
+	position: relative;
+	top: 10px;
+	left: 0;
+	background-color: #7f8fa4;
+}
+
+.divider-active {
+	color: #2399f1;
+}
+
+.divider-active::before {
+	background-color: #2399f1;
+}
+
+.msg-detail {
+	display: flex;
+	flex-flow: column;
+	padding-left: 10px;
+	margin-bottom: 10px;
+}
+
+.msg-items .avator,
+.msg-detail .name {
+	float: left;
+}
+
+.msg-detail .name {
+	padding-bottom: 20px;
+	font-size: 16px;
+	color: #585d68;
+	font-weight: 700;
+}
+
+.msg img {
+	margin: 10px 10px 0 0;
+}
+
+.name span {
+	margin: 0 10px;
+	font-size: 14px;
+	color: #7f8fa4;
+}
+
+.msg-detail .msg {
+	font-size: 14px;
+	line-height: 20px;
+	color: #585d68;
+}
+
+.write-msg {
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: row;
+	flex: 0 0 150px;
+	padding: 0 20px;
+	border-left: 1px solid #dfe3e9;
+	background-color: #fff;
+	justify-content: space-around;
+}
+
+
+.write-msg input[type="button"] {
+	flex: 0 0 50px;
+	height: 48px;
+	border: 1px solid #dfe3e9;
+	background-color: #f2f4f8;
+	color: #9fa9ba;
+	font-size: 35px;
+	outline: none;
+}
+
+.write-msg input[type="text"] {
+	box-sizing: border-box;
+	flex: 1 1 auto;
+	height: 48px;
+	padding: 0 15px;
+	border: 1px solid #dfe3e9;
+	outline: none;
+}
