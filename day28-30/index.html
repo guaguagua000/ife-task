@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="wrapper">
+	    <input id="email-input" type="text">
+	    <ul id="email-sug-wrapper" class="email-sug"></ul>
+	</div>
+	<script>
+
+		var postfixList = ['@163.com', '@gmail.com', '@126.com', '@qq.com', '@263.net'];
+		var inputBox = document.querySelector("#email-input");
+		var sugUl = document.querySelector("#email-sug-wrapper");
+		var nowSelectTipIndex = 0;
+
+		window.onload = setFocus;
+
+		document.addEventListener("input", function(event) {
+			var keyName = event.data;
+			if(keyName !== 'ArrowUp' && keyName !== 'ArrowDown' && keyName !== 'Enter') {
+				resetChecked();
+			}
+			var inputValue = getInputValue(); //获取用户输入
+			var mailList= suggestion(inputValue); //生成提示内容
+			addToUl(mailList); //将内容添加到ul标签中
+			handleSug(inputValue); //控制ul标签的隐藏
+		});
+
+		//监听向上、向下、回车键
+		document.addEventListener("keyup", function(event) {
+			var key = event.key;
+			if(key === "ArrowUp" || key === "ArrowDown" || key === "Enter") {
+				var li = sugUl.querySelectorAll("li");
+				var len = li.length;
+				var nowIndex = 0;
+				for(var i = 0; i < len; i++) {
+					if(li[i].classList.contains("selected")) {
+						nowIndex = i;
+						break;
+					}
+				}
+				li[nowIndex].classList.remove("selected");
+				if(key === "ArrowUp") {
+					// if(nowSelectTipIndex !== 0) {
+					// 	nowSelectTipIndex --;
+					// } else {
+					// 	nowSelectTipIndex = len -1;
+					// }
+					if(nowIndex !== 0) {
+						li[nowIndex - 1].classList.add("selected");
+					} else {
+						li[len - 1].classList.add("selected");
+					}
+				}
+
+				if(key === "ArrowDown") {
+					// if(nowSelectTipIndex < len - 1) {
+					// 	nowSelectTipIndex ++;
+					// } else {
+					// 	nowSelectTipIndex = 0;
+					// }
+					if(nowIndex !== len - 1) {
+						li[nowIndex + 1].classList.add("selected");
+					} else {
+						li[0].classList.add("selected");
+					}
+				}
+				if(key === "Enter" && sugUl.style.display === "block") {
+					// inputBox.value = li[nowSelectTipIndex].innerHTML;
+					inputBox.value = li[i].innerHTML;
+					hideSug();
+				}
+			}
+			
+		});
+
+		//监听esc键控制全选
+		document.addEventListener("keyup", function(event) {
+			if(event.key === "Escape") {
+				inputBox.select();
+			}
+		});
+
+		//监听鼠标移入提示框列表
+		sugUl.addEventListener("mouseover", function(e) {
+			var e = e || window.event;
+			var target = e.target || e.srcElement;
+			if(target.nodeName.toLowerCase() === 'li') {
+				target.classList.add("hoverSelected");
+			}
+		});
+
+		//监听鼠标移出提示框列表
+		sugUl.addEventListener("mouseout", function(e) {
+			var e = e || window.event;
+			var target = e.target || e.srcElement;
+			if(target.nodeName.toLowerCase() === 'li') {
+				target.classList.remove("hoverSelected");
+			}
+		});
+
+		//监听鼠标点击某个邮箱列表项
+		sugUl.addEventListener("click", function(e) {
+			var e = e || window.event;
+			var target = e.target || e.srcElement;
+			if(target.nodeName.toLowerCase() === 'li') {
+				inputBox.value = htmlDecode(target.innerHTML);
+				hideSug();
+				setFocus();
+			}
+			
+		});
+
+		//重置默认选择
+		function resetChecked() {
+			// nowSelectTipIndex = 0;
+			var li = sugUl.querySelectorAll("li");
+			for(var i = 0; i < li.length; i++) {
+				if(li[i].classList.contains("selected")) {
+					break;
+				} 
+			}
+
+			if(i !== 0 && sugUl.querySelectorAll("li") > 0) {
+				li[i].classList.remove("selected");
+				li[0].classList.add("selected");
+			}
+		}
+
+		//取输入框内容
+		function getInputValue() {
+			return inputBox.value.trim();
+		};
+
+		//生成提示框内容
+		function suggestion(value) {
+			var newList = new Array();
+			var cutValue = value;
+			var fixStr = "";
+			if( value.indexOf("@") !== -1) {
+				cutValue = value.slice(0, value.indexOf("@"));
+				fixStr = value.slice(value.indexOf("@"));
+			}
+			postfixList.forEach(function(val, idx, arr) {
+				if(val.indexOf(fixStr) !== -1) { 
+					newList.push(cutValue + val);
+				}
+			});
+
+			//如果新列表为空，则全部显示
+			if(newList.length === 0) {
+				postfixList.forEach(function(val, idx, arr) {
+						newList.push(cutValue + val);
+				});
+			}
+
+			//对html内容进行转码
+			newList.forEach(function(val, idx, arr) {
+				htmlEncode(val);
+			});
+
+			return newList;
+		};
+
+		//将提示内容加到ul中
+		function addToUl(list) {
+			sugUl.innerHTML = "<li>" + list.join("</li><li>") + "</li>";
+			sugUl.querySelectorAll("li")[nowSelectTipIndex].classList.add("selected");
+			// console.log(nowSelectTipIndex);
+		}
+
+		//控制提示框的显示
+		function handleSug(inputValue) {
+			if(inputValue === "") {
+				hideSug();
+			} else {
+				displaySug();
+			}
+		}
+
+		//隐藏提示框
+		function hideSug() {
+			sugUl.style.display = "none";
+		}
+
+		//显示提示框
+		function displaySug() {
+			sugUl.style.display = "block";
+			if(sugUl.contains(sugUl.querySelector("li"))) {
+				sugUl.querySelector("li").classList.add("selected");
+			}	
+		}
+
+		function setFocus() {
+			inputBox.focus();
+		}
+
+		//转码函数
+		function htmlEncode(html) {
+			var temp = document.createElement("div");
+			(temp.textContent != undefined) ? (temp.textContent = html) : (temp.innerText = html);
+			var output = temp.innerHTML ;
+			return output;
+		}
+
+		//解码函数
+		function htmlDecode(text) {
+			var temp = document.createElement("div");
+			temp.innerHTML = text;
+			var output = temp.innerText || temp.textContent;
+			temp = null;
+			return output;
+		}
+	</script>
+</body>
+</html>

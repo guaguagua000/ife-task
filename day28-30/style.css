@@ -1,0 +1,36 @@
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+	font-size: 14px;
+}
+
+input {
+	outline: none;
+	width: 200px;
+	height: 30px;
+	padding: 0 10px;
+	border: 1px solid #b1b1b1;
+}
+
+.email-sug {
+	width: 222px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.email-sug li {
+	height: 20px;
+	padding: 4px 10px;
+	border: 1px solid #b1b1b1;
+	border-top: none;
+	line-height: 20px;
+	color: #515151;
+}
+
+.selected {
+	background-color: #f1c6e7;
+}
+.hoverSelected {
+	background-color: #caadde;
+}
