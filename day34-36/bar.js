@@ -28,7 +28,6 @@ function drawBarGraph(barDataList) {
 	for(i = 0; i < dataLen; i++) {
 		barHeight.push(barDataList[i] * 100 / maxNum);
 	}
-	console.log(barHeight);
 
 	//绘制横轴与纵轴
 	let xAxis = document.createElementNS("http://www.w3.org/2000/svg", "path");
